@@ -145,7 +145,7 @@ The final risk score is capped at 100.
 ---
 ## System Architecture
 
-[!system_architecture](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/architecture-diagram.jpg)
+![system_architecture](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/architecture-diagram.jpg)
 
 ---
 ## Technology Stack
@@ -248,22 +248,22 @@ Open the address in your browser.
 ## Application Workflow
 The investigation process follows these steps:
 
-[!application_diagram](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/application-workflow.jpg)
+![application_diagram](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/application-workflow.jpg)
 
 ---
 ## Screenshot 
 ### Dashboard
 The main dashboard provides an interface for entering an IPv4 address and starting an IP reputation investigation.
 
-[!Dashboard](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/dashboard_screenshot.png)
+![Dashboard](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/dashboard_screenshot.png)
 
 ### Threat Intelligence Results
 The dashboard displays reputation information retrieved from VirusTotal and AbuseIPDB.
-[!ip_result](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/IP-reputation-result.png)
+![ip_result](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/IP-reputation-result.png)
 
 ### SOC Risk Assessment
 The dashboard calculates a custom SOC Risk Score and displays the corresponding risk level.
-[!risk_scoring](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/risk-scoring-result.png)
+![risk_scoring](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/risk-scoring-result.png)
 
 ---
 ## Security Features Implemented
