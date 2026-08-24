@@ -288,7 +288,7 @@ External API requests use a timeout to prevent indefinite waiting.
 The .gitignore file prevents .env from being tracked by Git.
 
 ---
-##Limitations
+## Limitations
 
 - The current version supports IPv4 addresses.
 - Results depend on external API availability.
