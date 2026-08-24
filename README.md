@@ -144,3 +144,166 @@ The final risk score is capped at 100.
 
 ---
 ## System Architecture
+
+[!system_architecture](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/architecture-diagram.jpg)
+
+---
+## Technology Stack
+### Frontend
+      - HTML5
+      - CSS3
+      - JavaScript
+### Backend
+      - Python 3
+      - Flask
+      - Flask-CORS
+      - Requests
+      - python-dotenv
+### Threat Intelligence
+      - VirusTotal API
+      - AbuseIPDB API
+
+---
+## Installation
+### 1. Install Python
+ Make sure Python 3 is installed.
+ Check:
+ ```
+ python --version
+ ```
+
+### 2. Install Dependencies
+Install the required Python packages:
+```
+pip install flask flask-cors requests python-dotenv
+```
+
+### API Configuration
+The application uses environment variables for API credentials.
+
+Create a file named:
+```
+.env
+```
+Add:
+```
+VIRUSTOTAL_API_KEY=your_virustotal_api_key
+ABUSEIPDB_API_KEY=your_abuseipdb_api_key
+```
+Replace the placeholder values with your actual API keys.
+
+### Environment Template
+The project includes:
+```
+.env.example
+```
+Example:
+```
+VIRUSTOTAL_API_KEY=your_virustotal_api_key
+ABUSEIPDB_API_KEY=your_abuseipdb_api_key
+```
+The .env.example file contains placeholders only and should not contain real API credentials.
+
+### Security
+
+API keys are not stored directly in the frontend.
+
+The application uses the following architecture:
+```
+Browser
+   |
+   v
+Flask Backend
+   |
+   +----> VirusTotal
+   |
+   +----> AbuseIPDB
+```
+The API credentials are loaded by the Flask backend from environment variables.
+
+### .gitignore
+The .gitignore file contains:
+```
+.env
+__pycache__/
+*.pyc
+```
+This prevents sensitive environment files and Python cache files from being tracked by Git.
+### Important
+Never upload the real .env file to a public GitHub repository.
+
+---
+## Running the Application
+Start the Flask server:
+```
+python app.py
+```
+The application runs locally at:
+```
+http://127.0.0.1:5000/
+```
+Open the address in your browser.
+
+---
+## Application Workflow
+The investigation process follows these steps:
+
+[!application_diagram](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/application-workflow.jpg)
+
+---
+## Screenshot 
+### Dashboard
+The main dashboard provides an interface for entering an IPv4 address and starting an IP reputation investigation.
+
+[!Dashboard](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/dashboard_screenshot.png)
+
+### Threat Intelligence Results
+The dashboard displays reputation information retrieved from VirusTotal and AbuseIPDB.
+[!ip_result](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/IP-reputation-result.png)
+
+### SOC Risk Assessment
+The dashboard calculates a custom SOC Risk Score and displays the corresponding risk level.
+[!risk_scoring](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/risk-scoring-result.png)
+
+---
+## Security Features Implemented
+The project includes several security-related controls:
+
+1. API Credential Protection
+API credentials are stored in environment variables rather than frontend JavaScript.
+
+2. Backend API Integration
+Third-party API requests are handled by the Flask backend.
+
+3. Input Validation
+IPv4 addresses are validated before processing.
+
+4. API Error Handling
+The backend checks external API responses and handles unsuccessful requests.
+
+5. Request Timeout
+External API requests use a timeout to prevent indefinite waiting.
+
+6. Source Control Protection
+The .gitignore file prevents .env from being tracked by Git.
+
+---
+##Limitations
+
+- The current version supports IPv4 addresses.
+- Results depend on external API availability.
+- VirusTotal and AbuseIPDB may impose API rate limits.
+- Threat intelligence results may change over time.
+- A malicious reputation does not automatically prove that an IP is currently attacking an organization.
+- The custom SOC Risk Score is intended for prioritization and is not an official vendor score.
+- The application is not a replacement for an enterprise SIEM, SOAR, or full threat intelligence platform.
+
+---
+## Future Enhancements
+Potential future improvements include:
+- WHOIS enrichment
+- IP geolocation
+- URL reputation check
+- File hash reputation check
+
+---
