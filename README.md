@@ -76,17 +76,17 @@ Tor Status
 ## Technology Stack
 
 ### Frontend
-HTML5
-CSS3
-JavaScript
+- HTML5
+- CSS3
+- JavaScript
 
 ### Backend
-Python 3
-Flask
-Flask-CORS
+- Python 3
+- Flask
+- Flask-CORS
 
 ### Data Storage
-Local JSON dataset
+- Local JSON dataset
 
 No database or external threat-intelligence service is required.
 
