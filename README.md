@@ -55,22 +55,22 @@ Only IP addresses available in the local dataset can return reputation informati
 ---
 ## Reputation Information
 
-The dashboard displays:
+### The dashboard displays:
 
-IP Address
-Country
-ASN
-ISP
-Domain
-Usage Type
-Malicious Detections
-Suspicious Detections
-Harmless Detections
-Undetected Results
-Detection Sources
-Confidence Score
-Total Reports
-Tor Status
+- IP Address
+- Country
+- ASN
+- ISP
+- Domain
+- Usage Type
+- Malicious Detections
+- Suspicious Detections
+- Harmless Detections
+- Undetected Results
+- Detection Sources
+- Confidence Score
+- Total Reports
+- Tor Status
 
 ---
 ## Technology Stack
