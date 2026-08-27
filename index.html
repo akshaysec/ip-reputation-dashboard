@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IP Reputation Dashboard</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <h1>IP Reputation Dashboard</h1>
+
+    <p class="subtitle">
+        Check an IP address against VirusTotal
+    </p>
+
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="ipInput"
+            placeholder="Enter IP address e.g. 8.8.8.8"
+        >
+
+        <button id="checkBtn">
+            Check IP
+        </button>
+
+    </div>
+
+    <p id="message"></p>
+
+
+    <!-- Results -->
+
+    <div id="results" class="results hidden">
+
+    <div class="card">
+
+        <h2>IP Reputation Details</h2>
+
+        <div class="row">
+            <span class="label">IP Address</span>
+            <span class="value" id="ipAddress">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Country</span>
+            <span class="value" id="country">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">ASN</span>
+            <span class="value" id="asn">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">ISP</span>
+            <span class="value" id="isp">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Domain</span>
+            <span class="value" id="domain">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Usage Type</span>
+            <span class="value" id="usageType">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Malicious Detections</span>
+            <span class="value danger" id="malicious">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Suspicious Detections</span>
+            <span class="value warning" id="suspicious">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Harmless Detections</span>
+            <span class="value safe" id="harmless">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Undetected</span>
+            <span class="value" id="undetected">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Detection Sources</span>
+            <span class="value" id="totalVendors">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Confidence Score</span>
+            <span class="value" id="abuseScore">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Total Reports</span>
+            <span class="value" id="reports">-</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Tor</span>
+            <span class="value" id="tor">-</span>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+
+    /*
+        ========================================
+        ELEMENTS
+        ========================================
+    */
+
+    const ipInput = document.getElementById("ipInput");
+    const checkBtn = document.getElementById("checkBtn");
+    const message = document.getElementById("message");
+    const results = document.getElementById("results");
+
+
+    /*
+        ========================================
+        BUTTON
+        ========================================
+    */
+
+    checkBtn.addEventListener("click", checkIP);
+
+
+    ipInput.addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            checkIP();
+        }
+
+    });
+
+
+    /*
+        ========================================
+        IP VALIDATION
+        ========================================
+    */
+
+    function isValidIPv4(ip) {
+
+        const parts = ip.split(".");
+
+        if (parts.length !== 4) {
+            return false;
+        }
+
+        return parts.every(function(part) {
+
+            const number = Number(part);
+
+            return (
+                part !== "" &&
+                !isNaN(number) &&
+                number >= 0 &&
+                number <= 255
+            );
+
+        });
+    }
+
+
+    /*
+        ========================================
+        MAIN FUNCTION
+        ========================================
+    */
+
+    async function checkIP() {
+
+    const ip = ipInput.value.trim();
+
+    if (!isValidIPv4(ip)) {
+
+        message.textContent =
+            "Please enter a valid IPv4 address.";
+
+        results.classList.add("hidden");
+
+        return;
+    }
+
+    message.textContent =
+        "Checking local reputation dataset...";
+
+    checkBtn.disabled = true;
+    checkBtn.textContent = "Checking...";
+
+    try {
+
+        const response = await fetch("/api/check-ip", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                ip: ip
+            })
+
+        });
+
+        const data = await response.json();
+
+        console.log("BACKEND RESPONSE:", data);
+        
+        if (!response.ok) {
+
+            throw new Error(
+                data.error || "IP not found"
+            );
+
+        }
+
+        displayIPReputation(data);
+
+        results.classList.remove("hidden");
+
+        message.textContent =
+            `Results for ${ip}`;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        results.classList.add("hidden");
+
+        message.textContent =
+            error.message;
+
+    }
+
+    finally {
+
+        checkBtn.disabled = false;
+        checkBtn.textContent = "Check IP";
+
+    }
+
+}
+
+    /*
+        ========================================
+        DISPLAY IP Reputation
+        ========================================
+    */
+function displayIPReputation(data) {
+
+    console.log("DATA RECEIVED:", data);
+
+    document.getElementById("ipAddress")
+        .textContent = data.ip || "-";
+
+    document.getElementById("country")
+        .textContent = data.country || "-";
+
+    document.getElementById("asn")
+        .textContent = data.asn || "-";
+
+    document.getElementById("isp")
+        .textContent = data.isp || "-";
+
+    document.getElementById("domain")
+        .textContent = data.domain || "-";
+
+    document.getElementById("usageType")
+        .textContent = data.usageType || "-";
+
+    document.getElementById("malicious")
+        .textContent = data.malicious ?? 0;
+
+    document.getElementById("suspicious")
+        .textContent = data.suspicious ?? 0;
+
+    document.getElementById("harmless")
+        .textContent = data.harmless ?? 0;
+
+    document.getElementById("undetected")
+        .textContent = data.undetected ?? 0;
+
+    document.getElementById("totalVendors")
+        .textContent = data.totalVendors ?? 0;
+
+    document.getElementById("abuseScore")
+        .textContent =
+        `${data.abuseConfidenceScore ?? 0}%`;
+
+    document.getElementById("reports")
+        .textContent = data.totalReports ?? 0;
+
+    document.getElementById("tor")
+        .textContent =
+        data.isTor ? "Yes" : "No";
+}
+
+
+</script>
+
+</body>
+</html>
