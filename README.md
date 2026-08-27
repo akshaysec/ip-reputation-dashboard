@@ -94,7 +94,7 @@ No database or external threat-intelligence service is required.
 
 The application follows a simple request and response architecture.
 
-![application_flow]()
+![application_flow](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/application-flow.jpg)
 
 ---
 ## Backend API
@@ -222,12 +222,12 @@ Open the address in a web browser.
 
 Add your dashboard screenshot here:
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/dashboard.png)
 IP Reputation Result
 
 Add your result screenshot here:
 
-![IP Reputation Result](screenshots/result.png)
+![IP Reputation Result](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/result-output.png)
 
 ---
 ## Limitations
