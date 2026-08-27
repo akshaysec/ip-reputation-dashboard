@@ -222,12 +222,9 @@ Open the address in a web browser.
 ## Screenshots
 ### Dashboard
 
-Add your dashboard screenshot here:
-
 ![Dashboard](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/dashboard.png)
-IP Reputation Result
 
-Add your result screenshot here:
+### IP Reputation Result
 
 ![IP Reputation Result](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/screenshot/result-output.png)
 
