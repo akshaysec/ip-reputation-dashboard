@@ -89,16 +89,15 @@ Flask-CORS
 Local JSON dataset
 
 No database or external threat-intelligence service is required.
+
 ---
 ## How the Application Works
-
 The application follows a simple request and response architecture.
 
 ![application_flow](https://github.com/akshaysec/ip-reputation-dashboard/blob/main/img/application-flow.jpg)
 
 ---
 ## Backend API
-
 The application provides the following endpoint:
 
 Check IP
