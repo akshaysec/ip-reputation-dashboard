@@ -104,13 +104,13 @@ Check IP
 POST /api/check-ip
 
 Request:
-
+```
 {
     "ip": "203.0.113.50"
 }
-
+```
 Example response:
-
+```
 {
     "ip": "203.0.113.50",
     "country": "IN",
@@ -127,14 +127,15 @@ Example response:
     "totalReports": 35,
     "isTor": false
 }
+```
 Local Dataset
 
 The application uses:
-
+```
 reputation_data.json
-
+```
 Example:
-
+```
 [
     {
         "ip": "203.0.113.50",
@@ -153,7 +154,7 @@ Example:
         "isTor": false
     }
 ]
-
+```
 The dataset is provided for demonstration and educational purposes.
 
 It does not represent real-time threat intelligence.
@@ -188,31 +189,33 @@ The frontend also validates the IPv4 address before sending the request to the b
 Make sure Python 3 is installed.
 
 Check:
-
+```
 python --version
-
+```
 or:
-
+```
 py --version
-
+```
 ### Step 2 — Install Dependencies
 
 Install Flask and Flask-CORS:
-
+```
 py -m pip install flask flask-cors
+```
 Running the Application
 
 Open a terminal in the project directory:
-
 IP-Reputation-Dashboard
 
 Run:
+```
 py app.py
+```
 
 The Flask server should start at:
-
+```
 http://127.0.0.1:5000
-
+```
 Open the address in a web browser.
 
 ---
@@ -230,29 +233,26 @@ Add your result screenshot here:
 
 ---
 ## Limitations
-
 This project is an educational MVP and has some limitations:
 
-The reputation data is local/sample data.
-The application does not provide real-time threat intelligence.
-The dataset must be manually updated.
-The application does not use a production database.
-The Flask development server should not be used for production deployment.
-The project currently focuses on IPv4 addresses.
+- The reputation data is local/sample data.
+- The application does not provide real-time threat intelligence.
+- The dataset must be manually updated.
+- The application does not use a production database.
+- The Flask development server should not be used for production deployment.
+- The project currently focuses on IPv4 addresses.
 
 ---
 ## Future Improvements
-
 Possible future enhancements include:
 
-Larger reputation datasets
-CSV/database support
-IPv6 support
-Historical IP searches
-Search history
-Export investigation results
+- Larger reputation datasets
+- CSV/database support
+- IPv6 support
+- Historical IP searches
+- Search history
+- Export investigation results
 
 ---
 ## Disclaimer
-
-Educational SOC Project — Reputation data is local/sample data and is not real-time threat intelligence.
+> Educational SOC Project — Reputation data is local/sample data and is not real-time threat intelligence.
